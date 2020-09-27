@@ -15,7 +15,7 @@ def largest(min_factor, max_factor):
     max_value  = max(palindrome)
     factors = find_factors(max_value, min_factor, max_factor)
 
-    return max_value,
+    return max_value,factors
 
     pass
 
@@ -36,10 +36,11 @@ def find_factors(value, min_factor, max_factor):
         if value % j == 0:
             print(value, j, value//j)
             if min_factor < (value // j) < max_factor:
-                factors.append([j, value // j])
+                if sorted([j, value // j]) not in factors:
+                    factors.append(sorted([j, value // j]))
     return factors
 
 
-largest(100, 999)
 
-print(find_factors(580085, 100, 999))
+
+print(largest(100, 999))
