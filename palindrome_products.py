@@ -1,21 +1,21 @@
 def largest(min_factor, max_factor):
+
     first_factor = max_factor
     second_factor = max_factor
     value = first_factor * second_factor
 
-    found = False
-    factors = []
-
-    for first_factor in range(max_factor, min_factor - 1, -1):
-        for second_factor in range(max_factor, min_factor - 1, -1):
+    max_value = max_factor*max_factor
+    min_value = min_factor*min_factor
+    palindrome = []
+    for first_factor in range(max_factor, min_factor, -1):
+        for second_factor in range(max_factor, first_factor, -1):
             value = first_factor * second_factor
-            found = is_palindrome(value)
-            if found:
-                break
-        if found:
-            break
-    factors = find_factors(value, min_factor, max_factor)
-    print(value, factors)
+            if is_palindrome(value) and value not in palindrome:
+                palindrome.append(value)
+    max_value  = max(palindrome)
+    factors = find_factors(max_value, min_factor, max_factor)
+
+    return max_value,
 
     pass
 
@@ -40,6 +40,6 @@ def find_factors(value, min_factor, max_factor):
     return factors
 
 
-#largest(100, 999)
+largest(100, 999)
 
 print(find_factors(580085, 100, 999))
